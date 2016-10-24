@@ -25,16 +25,12 @@ namespace BowlingGame
     [TestClass]
     public class BowlingTest
     {
-        [TestMethod]
-        public void canCreateGame()
-        {
-            Game g = new Game();
-        }
+        private Game g;
 
         [TestMethod]
         public void canRoll()
         {
-            Game g = new Game();
+            g = new Game();
             g.Roll(0);
         }
     }
