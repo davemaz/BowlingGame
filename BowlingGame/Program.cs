@@ -29,21 +29,26 @@ namespace BowlingGame
         public int Score()
         {
             int score = 0;
-            int i = 0;
+            int firstInFrame = 0;
             for (int frame = 0; frame < 10; frame++)
             {
-                if (rolls[i] + rolls[i + 1] == 10) // spare
+                if (IsSpare(firstInFrame))
                 {
-                    score += 10 + rolls[i + 2];
-                    i += 2;
+                    score += 10 + rolls[firstInFrame + 2];
+                    firstInFrame += 2;
                 }
                 else
                 {
-                    score += rolls[i] + rolls[i + 1];
-                    i += 2;
+                    score += rolls[firstInFrame] + rolls[firstInFrame + 1];
+                    firstInFrame += 2;
                 }
             }
             return score;
+        }
+
+        private bool IsSpare(int firstInFrame)
+        {
+            return rolls[firstInFrame] + rolls[firstInFrame + 1] == 10;
         }
     }
 
@@ -58,6 +63,11 @@ namespace BowlingGame
             {
                 g.Roll(pins);
             }
+        }
+        private void RollSpare()
+        {
+            g.Roll(5);
+            g.Roll(5);
         }
 
         [TestMethod]
@@ -77,11 +87,11 @@ namespace BowlingGame
         [TestMethod]
         public void oneSpare()
         {
-            g.Roll(5);
-            g.Roll(5); // spare
+            RollSpare();
             g.Roll(3);
             RollMany(17, 0);
             Assert.AreEqual(16, g.Score());
         }
+
     }
 }
