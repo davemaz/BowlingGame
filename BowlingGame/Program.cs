@@ -14,7 +14,13 @@ namespace BowlingGame
         }
     }
 
-    class BowlingTest
+    public class Game
+    {
+
+    }
+
+    [TestClass]
+    public class BowlingTest
     {
         [TestMethod]
         public void canCreateGame()
