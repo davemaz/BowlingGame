@@ -32,18 +32,43 @@ namespace BowlingGame
             int firstInFrame = 0;
             for (int frame = 0; frame < 10; frame++)
             {
-                if (IsSpare(firstInFrame))
+                if (IsStrike(firstInFrame))
                 {
-                    score += 10 + rolls[firstInFrame + 2];
+                    score += NextTwoBallsForStrike(firstInFrame);
+                    firstInFrame++;
+                }
+                else if (IsSpare(firstInFrame))
+                {
+                    score += NextBallForSpare(firstInFrame);
                     firstInFrame += 2;
                 }
                 else
                 {
-                    score += rolls[firstInFrame] + rolls[firstInFrame + 1];
+                    score += TwoBallsInFrame(firstInFrame);
                     firstInFrame += 2;
                 }
             }
             return score;
+        }
+
+        private int TwoBallsInFrame(int firstInFrame)
+        {
+            return rolls[firstInFrame] + rolls[firstInFrame + 1];
+        }
+
+        private int NextBallForSpare(int firstInFrame)
+        {
+            return 10 + rolls[firstInFrame + 2];
+        }
+
+        private int NextTwoBallsForStrike(int firstInFrame)
+        {
+            return 10 + rolls[firstInFrame + 1] + rolls[firstInFrame + 2];
+        }
+
+        private bool IsStrike(int firstInFrame)
+        {
+            return rolls[firstInFrame] == 10;
         }
 
         private bool IsSpare(int firstInFrame)
@@ -64,10 +89,16 @@ namespace BowlingGame
                 g.Roll(pins);
             }
         }
+
         private void RollSpare()
         {
             g.Roll(5);
             g.Roll(5);
+        }
+
+        private void RollStrike()
+        {
+            g.Roll(10);
         }
 
         [TestMethod]
@@ -96,11 +127,12 @@ namespace BowlingGame
         [TestMethod]
         public void oneStrike()
         {
-            g.Roll(10); // strike
+            RollStrike();
             g.Roll(3);
             g.Roll(4);
             RollMany(16, 0);
             Assert.AreEqual(24, g.Score());
         }
+
     }
 }
