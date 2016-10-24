@@ -27,5 +27,12 @@ namespace BowlingGame
         {
             Game g = new Game();
         }
+
+        [TestMethod]
+        public void canRoll()
+        {
+            Game g = new Game();
+            g.Roll(0);
+        }
     }
 }
