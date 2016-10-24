@@ -49,5 +49,16 @@ namespace BowlingGame
             }
             Assert.AreEqual(0, g.Score());
         }
+
+        [TestMethod]
+        public void allOnes()
+        {
+            g = new Game();
+            for (int i = 0; i < 20; i++)
+            {
+                g.Roll(1);
+            }
+            Assert.AreEqual(20, g.Score());
+        }
     }
 }
