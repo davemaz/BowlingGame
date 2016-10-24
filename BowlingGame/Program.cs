@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,15 @@ namespace BowlingGame
     {
         static void Main(string[] args)
         {
+        }
+    }
+
+    class BowlingTest
+    {
+        [TestMethod]
+        public void canCreateGame()
+        {
+            Game g = new Game();
         }
     }
 }
