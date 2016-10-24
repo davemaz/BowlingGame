@@ -11,6 +11,7 @@ namespace BowlingGame
     {
         static void Main(string[] args)
         {
+           
         }
     }
 
@@ -18,7 +19,11 @@ namespace BowlingGame
     {
         public void Roll(int pins)
         {
+        }
 
+        public int Score()
+        {
+            return 0;
         }
     }
 
@@ -37,7 +42,8 @@ namespace BowlingGame
         [TestMethod]
         public void gutterGame()
         {
-            for (int i=0; i<20; i++)
+            g = new Game();
+            for (int i = 0; i < 20; i++)
             {
                 g.Roll(0);
             }
