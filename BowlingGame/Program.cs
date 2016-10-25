@@ -134,5 +134,11 @@ namespace BowlingGame
             Assert.AreEqual(24, g.Score());
         }
 
+        [TestMethod]
+        public void PerfectGame()
+        {
+            RollMany(12, 10);
+            Assert.AreEqual(300, g.Score());
+        }
     }
 }
